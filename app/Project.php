@@ -10,6 +10,8 @@ class Project extends Model
         'name',
         'url',
         'screen',
+        'created_at',
+        'updated_at',
         // 'technologies',
     ];
 

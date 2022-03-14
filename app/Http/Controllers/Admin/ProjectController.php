@@ -44,7 +44,17 @@ class ProjectController extends Controller
             'input-url' => 'required',
         ]);
 
-        dd($validate);
+        // dd($validate);
+        $newProject = new Project();
+        $newProject->name = $validate['input-nome'];
+        $newProject->url = $validate['input-url'];
+        $newProject->screen = 'niente screen';
+        // dd($newProject);
+        $newProject->save();
+
+
+        $projects = Project::all();
+        return view('admin.projects.index',compact('projects'));
     }
 
     /**

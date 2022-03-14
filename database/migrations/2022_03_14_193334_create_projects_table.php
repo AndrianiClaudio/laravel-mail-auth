@@ -27,6 +27,7 @@ class CreateProjectsTable extends Migration
              *      M A M
              *      Tabella ponte con technology_id e project_id
             */
+            $table->timestamps();
         });
     }
 
