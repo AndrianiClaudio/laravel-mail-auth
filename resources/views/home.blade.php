@@ -8,6 +8,4 @@
 
 @section('content')
 
-{{--  --}}
-
 @endsection

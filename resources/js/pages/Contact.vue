@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container py-4">
     <div v-if="success" class="alert alert-success" role="alert">
         Mail inviata con successo!
     </div>
@@ -26,7 +26,7 @@
             </p>
         </div>
 
-        <button type="submit" class="btn btn-primary">{{ sending ? "Sto inviando..." : "Invia" }}</button>
+        <button type="submit" class="btn btn-primary" :disabled = sending>Invia</button>
     </form>
   </div>
 </template>
