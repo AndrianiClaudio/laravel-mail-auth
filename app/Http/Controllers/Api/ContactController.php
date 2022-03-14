@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Lead;
 use App\Mail\SendNewMail;
-// use App\Mail\SendNewMailGuest;
+use App\Mail\SendNewMailGuest;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
@@ -37,7 +37,7 @@ class ContactController extends Controller
             Mail::to('admin@admin')->send(new SendNewMail($new_lead));
 
             //inviare la mail al guest
-            // Mail::to($new_lead->email)->send(new SendNewMailGuest($new_lead));
+            Mail::to($new_lead->email)->send(new SendNewMailGuest($new_lead));
 
             return response()->json([
                 'success' => true
