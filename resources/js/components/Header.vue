@@ -16,7 +16,7 @@
                   <router-link class="nav-link" :to="{ name: 'contact' }">Contatti</router-link>
                </li>
              </ul>
-             <ul class="navbar-nav ml-auto">
+             <ul class="navbar-nav ms-auto">
                <li class="nav-item">
                   <a class="nav-link" href="/login">Login</a>
                </li>
