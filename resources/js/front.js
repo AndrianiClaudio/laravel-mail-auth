@@ -2,15 +2,16 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-import App from './views/App.vue';
+import VueRouter from "vue-router";
+Vue.use(VueRouter);
+
+// pages import
 import Home from './pages/Home.vue';
 import About from './pages/About.vue';
 import Contact from './pages/Contact.vue';
-import VueRouter from "vue-router";
-
-Vue.use(VueRouter);
 
 const router = new VueRouter({
+    mode: 'history',
     routes:[
         {
             path:'/',
@@ -30,6 +31,7 @@ const router = new VueRouter({
     ]
 });
 
+import App from './views/App.vue';
 
 const app = new Vue({
     el: '#app',
