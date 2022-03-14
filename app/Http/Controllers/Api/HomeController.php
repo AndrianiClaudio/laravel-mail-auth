@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function checkAuth() {
         // dd('checkAuth');
-        // dd(Auth::check());
+        dd(Auth::check());
         return Auth::check() ? 
         response()->json([    
             'data' => true

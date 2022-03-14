@@ -20,7 +20,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 // // Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'Guest\HomeController@index')->name('home');
+Route::get('/', 'Guest\HomeController@index')->name('guest.index');
+// Route::get('/contact', 'Guest\HomeController@index')->name('guest.contact');
+// Route::get('/about', 'Guest\HomeController@index')->name('guest.about');
+// Route::get('/contact', 'Guest\HomeController@contact')->name('guest.contact');
+// Route::get('/about', 'Guest\HomeController@about')->name('guest.about');
 
 
 Route::middleware('auth')
@@ -29,10 +33,12 @@ Route::middleware('auth')
     ->prefix('admin')
     ->group(function(){
         Route::get('/', 'HomeController@index')->name('home');
-        Route::get('/', 'ProjectController@index')->name('project.index');
+        Route::get('/project', 'ProjectController@index')->name('project.index');
+        Route::get('/project/create', 'ProjectController@create')->name('project.create');
+        Route::post('/project/store', 'ProjectController@store')->name('project.store');
     });
     
 
-// Route::get('{any?}', function ($name = null) {
-//     return view('home');
-// })->where('any', '.*');
+Route::get('{any?}', function ($name = null) {
+    return view('home');
+})->where('any', '.*');

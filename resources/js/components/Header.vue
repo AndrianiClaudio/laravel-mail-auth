@@ -16,7 +16,7 @@
                   <router-link class="nav-link" :to="{ name: 'contact' }">Contatti</router-link>
                </li>
              </ul>
-             <ul v-if="!logged" class="navbar-nav ms-auto">
+             <ul v-if="!checkLogged" class="navbar-nav ms-auto">
                <li class="nav-item">
                   <a class="nav-link" href="/login">Login</a>
                </li>
@@ -26,7 +26,7 @@
              </ul>
              <ul v-else class="navbar-nav ms-auto">
                 <li class="nav-item">
-                   <a href="/logout" class="nav-link" >logout</a>
+                   <a href="/logout" class="nav-link">logout</a>
 
                   <a class="nav-link" href="/logout"
                      onclick="event.preventDefault();
@@ -51,13 +51,24 @@ export default {
         logged: false,
      }
   },
+  computed: {
+     checkLogged() {
+        this.apiCall();
+        return this.logged;
+     }
+  },
+  methods: {
+     apiCall() {
+        // check user is log
+        axios.get('/api/checkAuth')
+        .then(res=> {
+           this.logged = res.data.data;
+           console.log(this.logged );
+        });
+     }
+  },
   created() {
-   // check user is log
-   axios.get('/api/checkAuth')
-   .then(res=> {
-      this.logged = res.data.data;
-      console.log(this.logged );
-   });
+     this.apiCall();
   }
 }
 </script>
