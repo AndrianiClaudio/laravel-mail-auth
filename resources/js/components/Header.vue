@@ -16,13 +16,27 @@
                   <router-link class="nav-link" :to="{ name: 'contact' }">Contatti</router-link>
                </li>
              </ul>
-             <ul class="navbar-nav ms-auto">
+             <ul v-if="!logged" class="navbar-nav ms-auto">
                <li class="nav-item">
                   <a class="nav-link" href="/login">Login</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="/register">Register</a>
                </li>
+             </ul>
+             <ul v-else class="navbar-nav ms-auto">
+                <li class="nav-item">
+                   <a href="/logout" class="nav-link" >logout</a>
+
+                  <a class="nav-link" href="/logout"
+                     onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                  </a>
+
+                  <form id="logout-form" action="/logout" method="POST" class="d-none">
+                  </form>
+                </li>
              </ul>
           </div>
       </div>
@@ -31,7 +45,20 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  data () {
+     return {
+        logged: false,
+     }
+  },
+  created() {
+   // check user is log
+   axios.get('/api/checkAuth')
+   .then(res=> {
+      this.logged = res.data.data;
+      console.log(this.logged );
+   });
+  }
 }
 </script>
 

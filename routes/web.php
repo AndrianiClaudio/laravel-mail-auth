@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
+// // Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'Guest\HomeController@index')->name('home');
 
 
 Route::middleware('auth')
@@ -30,8 +31,7 @@ Route::middleware('auth')
         Route::get('/', 'HomeController@index')->name('home');
     });
     
-Route::get('/', 'Guest\HomeController@index')->name('home');
 
-Route::get('{any?}', function ($name = null) {
-    return view('home');
-})->where('any', '.*');
+// Route::get('{any?}', function ($name = null) {
+//     return view('home');
+// })->where('any', '.*');
