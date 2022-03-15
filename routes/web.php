@@ -32,7 +32,7 @@ Route::middleware('auth')
     ->name('admin.')
     ->prefix('admin')
     ->group(function(){
-        Route::get('/dashboard', 'HomeController@index')->name('index');
+        Route::get('/', 'HomeController@index')->name('index');
         Route::get('/project', 'ProjectController@index')->name('project.index');
         Route::get('/project/create', 'ProjectController@create')->name('project.create');
         Route::post('/project/store', 'ProjectController@store')->name('project.store');

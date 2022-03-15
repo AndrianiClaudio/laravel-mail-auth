@@ -18,18 +18,10 @@ class ProjectController extends Controller
     {
         $projects = Project::all();
 
-        // $technologies = Technology::all();
+        $project_technologies = [];
         foreach ($projects as $prj) {
-            $tmp = $prj->technologies()->get()->toArray();
-            $project_technologies = [];
-            foreach ($tmp as $tech) {
-                $project_technologies [] = $tech['name'];
-            }
-            $prj['technologies'] = $project_technologies;
-            // dd($prj->technologies);
+            $prj['technologies'] = $prj->technologies->all();
         }
-        // dd($projects);
-        // dd($project_technologies);
         // dd('Admin/Project/Index');
         return view('admin.projects.index',compact('projects'));
     }

@@ -9,6 +9,10 @@
                </li>
 
                <li class="nav-item" >
+                  <router-link class="nav-link" :to="{ name: 'projects' }">Projects</router-link>
+               </li>
+
+               <li class="nav-item" >
                   <router-link class="nav-link" :to="{ name: 'about' }">About me</router-link>
                </li>
 

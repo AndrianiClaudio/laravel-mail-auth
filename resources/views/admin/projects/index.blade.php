@@ -19,10 +19,10 @@
                     @foreach($prj->technologies as $tech)
                     <li class="list-group-item border-0">
                         <span class="badge rounded-pill 
-                        @if($tech === 'HTML') bg-success
-                        @else @if($tech === 'PHP') bg-info
-                        @else @if($tech === 'JS') bg-warning text-dark
-                        @else bg-secondary @endif @endif @endif">{{$tech}}</span></li>
+                        @if($tech->name === 'HTML') bg-success
+                        @else @if($tech->name === 'PHP') bg-info
+                        @else @if($tech->name === 'JS') bg-warning text-dark
+                        @else bg-secondary @endif @endif @endif">{{$tech->name}}</span></li>
                     @endforeach
                 </ul>
             </div>
