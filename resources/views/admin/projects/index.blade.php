@@ -6,5 +6,5 @@
 
 @section('content')
     admin/projects/index
-    {{-- @dd($projects) --}}
+    @dd($projects)
 @endsection

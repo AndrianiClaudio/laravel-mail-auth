@@ -18,7 +18,7 @@
                 </div>
             @enderror
         </div>
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label for="input-url" class="form-label">Url</label>
             <input type="text" class="form-control" id="input-url" placeholder="URL repo" name="input-url">
             @error('input-url')
@@ -26,7 +26,20 @@
                     {{$message}}
                 </div>
             @enderror
-          </div>
+          </div> --}}
+          {{-- Select one or more categories --}}
+          <div class="input-group mb-3">
+            @foreach ($technologies as $tech)
+                <div class="input-group-text">
+                    <label for="{{$tech->name}}">{{$tech->name}}</label>
+                    <input class="form-check-input ms-3 mt-0" type="checkbox" value="">
+                
+                    
+                </div>
+                
+            @endforeach
+        </div>
+          
           <div class="mb-3">
             <button type="submit" class="btn btn-primary mb-3">Confirm</button>
           </div>

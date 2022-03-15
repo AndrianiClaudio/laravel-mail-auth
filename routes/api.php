@@ -22,7 +22,7 @@ Route::middleware('auth:api')
 Route::namespace('Api')
     ->group(function () {
         Route::post('/contacts','ContactController@store');
-        Route::get('/checkAuth','HomeController@checkAuth');
+        // Route::get('/checkAuth','HomeController@checkAuth');
     });
 // Route::namespace('Api')
 //     ->group(function () {

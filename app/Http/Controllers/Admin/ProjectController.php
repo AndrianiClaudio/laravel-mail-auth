@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Project;
+use App\Technology;
 
 class ProjectController extends Controller
 {
@@ -27,7 +28,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $technologies = Technology::all();
+
+        return view('admin.projects.create',compact('technologies'));
     }
 
     /**
@@ -41,19 +44,23 @@ class ProjectController extends Controller
         // dd($request->all());
         $validate = $request->validate([
             'input-nome' => 'required',
-            'input-url' => 'required',
+            // 'input-url' => 'required',
         ]);
+
+        $githubUrl_prefix = "https://github.com/AndrianiClaudio/";
 
         // dd($validate);
         $newProject = new Project();
         $newProject->name = $validate['input-nome'];
-        $newProject->url = $validate['input-url'];
+        $newProject->url = $githubUrl_prefix = "https://github.com/AndrianiClaudio/" . $validate['input-nome'];
         $newProject->screen = 'niente screen';
         // dd($newProject);
         $newProject->save();
 
 
         $projects = Project::all();
+        
+
         return view('admin.projects.index',compact('projects'));
     }
 
