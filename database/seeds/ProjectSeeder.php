@@ -393,7 +393,7 @@ class ProjectSeeder extends Seeder
             $newProject = new Project();
             $newProject->name = $p['name'];
             $newProject->url = "https://github.com/AndrianiClaudio/" . $p['name'];
-            $newProject->screen = 'niente ancora';
+            // $newProject->screen = 'niente ancora';
             $newProject->save();
 
 

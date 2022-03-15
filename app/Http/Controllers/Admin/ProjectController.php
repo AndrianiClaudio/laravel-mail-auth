@@ -53,7 +53,7 @@ class ProjectController extends Controller
         $newProject = new Project();
         $newProject->name = $validate['input-nome'];
         $newProject->url = $githubUrl_prefix = "https://github.com/AndrianiClaudio/" . $validate['input-nome'];
-        $newProject->screen = 'niente screen';
+        // $newProject->screen = 'niente screen';
         // dd($newProject);
         $newProject->save();
 

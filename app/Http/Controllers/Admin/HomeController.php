@@ -9,6 +9,10 @@ class HomeController extends Controller
 {
     public function index() {
         // dd('Admin/Home@index');
-        return view('layouts.admin');
+        return view('admin.index');
+    }
+
+    public function setAvatar() {
+
     }
 }

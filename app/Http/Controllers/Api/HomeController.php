@@ -11,6 +11,6 @@ class HomeController extends Controller
     //     // dd('checkAuth');
     //     dd(Auth::user());
     //     return Auth::check() ? 
-    //     view('admin.home') : view('home');
+    //     view('admin.index') : view('home');
     // }
 }

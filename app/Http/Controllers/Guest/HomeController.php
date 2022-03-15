@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index() {
         // dd('Guest/Home@index');
         
-        return !Auth::check() ? view('home') : view('admin.home');
+        return !Auth::check() ? view('home') : view('admin.index');
     }
     public function contact() {
         return view('home');

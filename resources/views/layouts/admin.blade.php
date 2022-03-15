@@ -32,19 +32,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            {{-- <a class="nav-link" href="http://127.0.0.1:8000">Home</a> --}}
-                            <a class="nav-link" href="{{ route('guest.index') }}">{{__('Home')}}</a>
+                            <a class="nav-link" href="{{ route('admin.index') }}">{{__('Home')}}</a>
                         </li>
                         <li class="nav-item">
-                            {{-- <a class="nav-link" href="http://127.0.0.1:8000">Home</a> --}}
+                            <a class="nav-link" href="{{ route('admin.project.index') }}">{{__('Visualizza Progetti')}}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.project.create') }}">{{__('Inserisci Progetto')}}</a>
                         </li>
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="{{ route('guest.index') }}">{{__('About')}}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('guest.index') }}">{{__('Contact')}}</a>
-                        </li> --}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -76,7 +71,9 @@
                 </div>
             </div>
         </nav>
-        @yield('content')
+        <div class="container py-4">
+            @yield('content')
+        </div>
     </div>
 </body>
 </html>

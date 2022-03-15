@@ -21,7 +21,7 @@ class CreateProjectsTable extends Migration
             // 'screen',
             $table->string('name');
             $table->string('url');
-            $table->string('screen');
+            $table->string('screen')->nullable();
             /** 'technologies:', es: HTML,CSS...
              * Array-> nuova tabella technologies
              *      M A M
