@@ -1,9 +1,8 @@
 @extends('layouts.admin')
 
 @section('script')
-<script src="{{asset("js/admin.js")}} defer"></script>
+<script src="{{asset("js/admin.js")}}" defer></script>
 @endsection
-
 @section('content')
     {{-- admin/projects/index --}}
     {{-- @dd($projects) --}}
@@ -12,7 +11,13 @@
     <div class="card-body">
         <div class="d-flex justify-content-between">
             {{-- PROJECT NAME --}}
-            <h4 class="card-text text-uppercase">{{$prj->name}}</h4>
+            <h4 class="card-text text-uppercase">
+                {{$prj->name}}
+                <a href="{{ route('admin.project.edit',$prj->id) }}">
+                    <i class="ms-3 bi bi-pen"></i>
+                </a>
+            </h4>
+
             @if($prj->technologies)
             <div class="technologies">
                 <ul class="list-group list-group-horizontal">
@@ -34,6 +39,7 @@
         @endif
         {{-- PROJECT URL --}}
         <a class="card-link" href="{{$prj->url}}">{{$prj->url}}</a>
+            {{-- <a class="nav-link" href="{{ route('admin.project.edit',1) }}">{{__('Modifica progetto')}}</a> --}}
     </div>
 </div>
 @endforeach

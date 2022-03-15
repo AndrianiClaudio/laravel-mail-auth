@@ -61,8 +61,11 @@ class ProjectController extends Controller
         // $newProject->screen = 'niente screen';
         // dd($newProject);
         $newProject->save();
+        $technologies_id = $request->technologies;
+        
 
-
+        $newProject->technologies()->sync($technologies_id);
+        
         $projects = Project::all();
         
 
@@ -77,7 +80,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -88,7 +91,7 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**

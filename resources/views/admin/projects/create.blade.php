@@ -31,9 +31,7 @@
     @foreach ($technologies as $tech)
         <div class="input-group-text">
             <label for="{{$tech->name}}">{{$tech->name}}</label>
-            <input class="form-check-input ms-3 mt-0" type="checkbox" value="">
-        
-            
+            <input class="form-check-input ms-3 mt-0" type="checkbox" value="{{$tech->id}}" name="technologies[]">
         </div>
         
     @endforeach
