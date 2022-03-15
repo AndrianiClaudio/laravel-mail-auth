@@ -35,7 +35,7 @@
         </div>
         {{-- PROJECT SCREEN --}}
         @if($prj->screen)
-        <img class="card-img-bottom" src="">
+        <img class="d-block img-img-fluid" height="250px" src="{{asset('storage/'.$prj->screen)}}">
         @endif
         {{-- PROJECT URL --}}
         <a class="card-link" href="{{$prj->url}}">{{$prj->url}}</a>

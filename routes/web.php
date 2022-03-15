@@ -18,6 +18,7 @@ Route::middleware('auth')
         Route::get('/project/create', 'ProjectController@create')->name('project.create');
         Route::post('/project/store', 'ProjectController@store')->name('project.store');
         Route::get('/project/{id:id}/edit', 'ProjectController@edit')->name('project.edit');
+        Route::post('/project/imageUpload', 'ProjectController@imageUpload')->name('projects.image.upload');
     });
     
 // DEFAULT

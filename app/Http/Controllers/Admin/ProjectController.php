@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Technology;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -48,27 +49,26 @@ class ProjectController extends Controller
     {
         // dd($request->all());
         $validate = $request->validate([
-            'input-nome' => 'required',
-            // 'input-url' => 'required',
+            'name' => 'required',
+            'screen' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         $githubUrl_prefix = "https://github.com/AndrianiClaudio/";
 
-        // dd($validate);
         $newProject = new Project();
-        $newProject->name = $validate['input-nome'];
-        $newProject->url = $githubUrl_prefix = "https://github.com/AndrianiClaudio/" . $validate['input-nome'];
-        // $newProject->screen = 'niente screen';
-        // dd($newProject);
+        $newProject->name = $validate['name'];
+        $newProject->url = $githubUrl_prefix = "https://github.com/AndrianiClaudio/" . $validate['name'];
+        if (!empty($validate['screen'])) {
+            $img_path = Storage::put('uploads/posts', $validate['screen']);
+            $newProject->screen = $img_path;
+        }
         $newProject->save();
+
         $technologies_id = $request->technologies;
-        
-
         $newProject->technologies()->sync($technologies_id);
-        
-        $projects = Project::all();
-        
 
+        // dd($newProject);
+        $projects = Project::all();
         return view('admin.projects.index',compact('projects'));
     }
 
@@ -91,8 +91,11 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        dd($id);
+        // dd($id);
+        $prj = Project::where('id',$id)->get()->first();
+        return view('admin.projects.edit',compact('prj'));
     }
+
 
     /**
      * Update the specified resource in storage.
