@@ -1,24 +1,40 @@
 @extends('layouts.admin')
 
 @section('script')
-    <script src="{{asset("js/admin.js")}} defer"></script>
+<script src="{{asset("js/admin.js")}} defer"></script>
 @endsection
 
 @section('content')
     {{-- admin/projects/index --}}
     {{-- @dd($projects) --}}
-    @foreach ($projects as $prj)
-        <div class="card">
-            <div class="card-body">
-                {{-- PROJECT NAME --}}
-                <h4 class="card-text text-uppercase">{{$prj->name}}</h4>
-                {{-- PROJECT SCREEN --}}
-                @if($prj->screen)
-                <img class="card-img-bottom" src="">
-                @endif
-                {{-- PROJECT URL --}}
-                <a class="card-link" href="{{$prj->url}}">{{$prj->url}}</a>
+@foreach ($projects as $prj)
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex justify-content-between">
+            {{-- PROJECT NAME --}}
+            <h4 class="card-text text-uppercase">{{$prj->name}}</h4>
+            @if($prj->technologies)
+            <div class="technologies">
+                <ul class="list-group list-group-horizontal">
+                    @foreach($prj->technologies as $tech)
+                    <li class="list-group-item border-0">
+                        <span class="badge rounded-pill 
+                        @if($tech === 'HTML') bg-success
+                        @else @if($tech === 'PHP') bg-info
+                        @else @if($tech === 'JS') bg-warning text-dark
+                        @else bg-secondary @endif @endif @endif">{{$tech}}</span></li>
+                    @endforeach
+                </ul>
             </div>
+            @endif
         </div>
-    @endforeach
+        {{-- PROJECT SCREEN --}}
+        @if($prj->screen)
+        <img class="card-img-bottom" src="">
+        @endif
+        {{-- PROJECT URL --}}
+        <a class="card-link" href="{{$prj->url}}">{{$prj->url}}</a>
+    </div>
+</div>
+@endforeach
 @endsection

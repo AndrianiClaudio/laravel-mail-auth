@@ -17,6 +17,19 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+
+        // $technologies = Technology::all();
+        foreach ($projects as $prj) {
+            $tmp = $prj->technologies()->get()->toArray();
+            $project_technologies = [];
+            foreach ($tmp as $tech) {
+                $project_technologies [] = $tech['name'];
+            }
+            $prj['technologies'] = $project_technologies;
+            // dd($prj->technologies);
+        }
+        // dd($projects);
+        // dd($project_technologies);
         // dd('Admin/Project/Index');
         return view('admin.projects.index',compact('projects'));
     }
