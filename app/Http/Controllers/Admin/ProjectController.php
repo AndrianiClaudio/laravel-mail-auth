@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
+    protected function storagePhoto($photo) {
+        if (!empty($photo)) {
+            $img_path = Storage::put('uploads/posts', $photo);
+            return $img_path;
+        }
+        return null;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -58,10 +65,8 @@ class ProjectController extends Controller
         $newProject = new Project();
         $newProject->name = $validate['name'];
         $newProject->url = $githubUrl_prefix = "https://github.com/AndrianiClaudio/" . $validate['name'];
-        if (!empty($validate['screen'])) {
-            $img_path = Storage::put('uploads/posts', $validate['screen']);
-            $newProject->screen = $img_path;
-        }
+        $newProject->screen = $this->storagePhoto($validate['screen']);
+        // dd($validate['screen']);
         $newProject->save();
 
         $technologies_id = $request->technologies;
@@ -69,7 +74,7 @@ class ProjectController extends Controller
 
         // dd($newProject);
         $projects = Project::all();
-        return view('admin.projects.index',compact('projects'));
+        return redirect()->route('admin.project.index',compact('projects'));
     }
 
     /**
@@ -106,8 +111,29 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'name' => 'required',
+            'url' => 'required',
+            'screen' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg'
+        ]);
+
+        $prj = Project::where('id',$id)->get()->first();
+        $prj->name = $validate['name'];
+        $prj->url = $validate['url'];
+        $prj->screen = $this->storagePhoto($validate['screen']);
+        // dd($prj);
+        $prj->update();
+
+
+        $projects = Project::all();
+
+        $project_technologies = [];
+        foreach ($projects as $prj) {
+            $prj['technologies'] = $prj->technologies->all();
+        }
+        return redirect()->route('admin.project.index',compact('projects'));
     }
+
 
     /**
      * Remove the specified resource from storage.

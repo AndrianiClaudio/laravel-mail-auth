@@ -17,8 +17,8 @@ Route::middleware('auth')
         Route::get('/project', 'ProjectController@index')->name('project.index');
         Route::get('/project/create', 'ProjectController@create')->name('project.create');
         Route::post('/project/store', 'ProjectController@store')->name('project.store');
-        Route::get('/project/{id:id}/edit', 'ProjectController@edit')->name('project.edit');
-        Route::post('/project/imageUpload', 'ProjectController@imageUpload')->name('projects.image.upload');
+        Route::get('/project/{id}/edit', 'ProjectController@edit')->name('project.edit');
+        Route::patch('/project/{id}/update', 'ProjectController@update')->name('project.update');
     });
     
 // DEFAULT
