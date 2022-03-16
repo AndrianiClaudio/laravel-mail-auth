@@ -19,15 +19,19 @@
                <li class="nav-item" >
                   <router-link class="nav-link" :to="{ name: 'contact' }">Contatti</router-link>
                </li>
+
+               <li class="nav-item" >
+                  <router-link class="nav-link" :to="{ name: 'cv' }">CV</router-link>
+               </li>
              </ul>
-             <ul class="navbar-nav ms-auto">
+             <!-- <ul class="navbar-nav ms-auto">
                <li class="nav-item">
                   <a class="nav-link" href="/login">Login</a>
                </li>
                <li class="nav-item">
                   <a class="nav-link" href="/register">Register</a>
                </li>
-             </ul>
+             </ul> -->
           </div>
       </div>
   </nav>
@@ -36,21 +40,8 @@
 <script>
 export default {
   name: 'Header',
-  data () {
-     return {
-     }
-  },
-
-  methods: {
-   //   apiCall() {
-   //      // check user is log
-   //      axios.get('/api/checkAuth');
-   //   }
-  },
-  created() {
-   //   this.apiCall();
-  }
 }
+
 </script>
 
 <style>

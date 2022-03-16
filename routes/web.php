@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-// Route::get('/', 'Guest\HomeController@index')->name('guest.index');
+Route::get('/', 'Guest\HomeController@index')->name('guest.index');
 
 // ADMIN
 Route::middleware('auth')
@@ -23,5 +23,5 @@ Route::middleware('auth')
     
 // DEFAULT
 Route::get('{any?}', function ($name = null) {
-    return Auth::check() ? view('admin.index') : view('home');
+    return redirect()->route('guest.index');
 })->where('any', '.*');

@@ -21,56 +21,51 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-light bg-white shadow-sm">
             <div class="container">
-                {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button> --}}
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav flex-row mr-auto">
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="{{ route('admin.index') }}">{{__('Home')}}</a>
+                    </li>
+                    @if(Auth::user())
+                    @if(Auth::user()->first()->role_id === 1)
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="{{ route('admin.project.index') }}">{{__('Visualizza Progetti')}}</a>
+                    </li>
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="{{ route('admin.project.create') }}">{{__('Inserisci Progetto')}}</a>
+                    </li>
+                    @endif
+                    @endif
+                </ul>
 
-                <div class="navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.index') }}">{{__('Home')}}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.project.index') }}">{{__('Visualizza Progetti')}}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.project.create') }}">{{__('Inserisci Progetto')}}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.project.edit',1) }}">{{__('Modifica progetto')}}</a>
-                        </li>
-                    </ul>
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav flex-row ms-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                    <li class="nav-item px-2">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                    @endif
+                    @else
+                    <li class="nav-item dropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                        </a>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
-                        @else
-                        <li class="nav-item dropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </li>
-                        @endguest
-                    </ul>
-                </div>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                    @endguest
+                </ul>
             </div>
         </nav>
         <div class="container py-4">

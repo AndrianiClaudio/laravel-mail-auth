@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index() {
-        // dd('Admin/Home@index');
-        return view('admin.index');
-    }
-
-    public function setAvatar() {
-
+        $loggedRole = User::where('id',Auth::id())->get()->first()->role_id;
+        return $loggedRole === 1 ? view('admin.index') : view('home');
     }
 }

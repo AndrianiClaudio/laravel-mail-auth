@@ -10,6 +10,7 @@ import Home from './pages/Home.vue';
 import About from './pages/About.vue';
 import Contact from './pages/Contact.vue';
 import Projects from './pages/Projects.vue';
+import CV from './pages/CV.vue';
 
 const router = new VueRouter({
     mode: 'history',
@@ -33,7 +34,12 @@ const router = new VueRouter({
             path:'/projects',
             name: 'projects',
             component: Projects
-        }
+        },
+        {
+            path:'/cv',
+            name: 'cv',
+            component: CV
+        },
     ]
 });
 
