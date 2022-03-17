@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Project;
 
-class ProjectController extends Controller
-{
+class ProjectController extends Controller {
     public function all() {
         $projects = Project::all(); 
         foreach ($projects as $prj) {
@@ -18,5 +17,10 @@ class ProjectController extends Controller
             'response' => true,
             'projects' => $projects,
         ]);
+    }
+
+    public function filterByTechnologies(Request $request) {
+        // 
+        dd($request->all());
     }
 }

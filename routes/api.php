@@ -11,4 +11,6 @@ Route::namespace ('Api')
     ->group(function () {
         Route::post('/contacts', 'ContactController@store');
         Route::get('/projects', 'ProjectController@all');
+        Route::get('/technologies', 'TechnologyController@all');
+        Route::post('/projects/technologies', 'ProjectController@filterByTechnologies');
     });

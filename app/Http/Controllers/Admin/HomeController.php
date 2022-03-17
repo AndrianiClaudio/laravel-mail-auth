@@ -12,5 +12,8 @@ class HomeController extends Controller
     public function index() {
         $loggedRole = User::where('id',Auth::id())->get()->first()->role_id;
         return $loggedRole === 1 ? view('admin.index') : view('home');
+
+
+        // return view('admin.index') -> accesso a lato admin, attualmente non accessibile
     }
 }

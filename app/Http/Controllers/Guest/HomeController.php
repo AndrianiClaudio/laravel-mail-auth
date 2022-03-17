@@ -16,7 +16,9 @@ class HomeController extends Controller
         // dd(Auth::id());
         // dd(Auth::id()->role_id);
 
-        $loggedRole = User::where('id',Auth::id())->get()->first()->role_id;
+        if(Auth::check()) {
+            $loggedRole = User::where('id',Auth::id())->get()->first()->role_id;
+        }
         return Auth::user() && $loggedRole === 1 ? view('admin.index') : view('home');
     }
 }
