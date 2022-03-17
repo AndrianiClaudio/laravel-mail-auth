@@ -1,19 +1,20 @@
 <template>
   <div class="container py-4">
     <!-- TECHONOLOGIES CHECKBOXES -->
-    <form action="/api/projects/technologies" class="text-center" method="post">
-      <!-- TO-DO -->
-      <div class="form-check form-check-inline" v-for="(tech,index) in technologies" :key="`tech-${index}`">
-        <input class="form-check-input" type="checkbox" :value="tech" :id="tech" name="tech[]">
-        <!-- <input class="form-check-input" type="checkbox" value="" id="flexCheckDisabled" disabled> -->
-        <label class="form-check-label" :for="tech">
-          {{tech}}
-        </label>
+     <div class="row">
+      <div class="col mb-3 justify-content-center">
+        <fieldset class="">
+          <legend class="text-center fs-5">Technologies</legend>
+          <ul class="list-group-horizontal d-flex justify-content-center align-items-center flex-wrap">
+            <li class="list-group-item " v-for="(tech, index) in technologies" :key="`technology-${index}`" >
+                <input class="me-2" type="checkbox" name="tags[]" :value="tech" v-model="selected.technologies">
+                <label :for="tech">{{tech}}</label>
+            </li>
+          </ul>
+          <button class="d-block mx-auto btn btn-info" type="submit" @click.prevent="filterProjects">Ricerca</button>
+        </fieldset>
       </div>
-      <div class="col mb-3">
-        <button class="btn btn-light" type="submit">Ricerca</button>
-      </div>
-    </form>
+    </div>
 
 
     <!-- PRINT ALL PROJECTS -->
@@ -46,6 +47,9 @@ export default {
     return {
       projects: [],
       technologies: [],
+      selected: {
+        technologies: [],
+      }
     }
   },
   methods: {
@@ -64,6 +68,13 @@ export default {
         // console.log(this.technologies);
       })
       .catch(err => console.error(err));
+    },
+    filterProjects() {
+      axios.get('api/projects/technologies',{params:this.selected})
+      .then(res => {
+        console.log(res.data);
+      });
+
     }
   },
   created() {

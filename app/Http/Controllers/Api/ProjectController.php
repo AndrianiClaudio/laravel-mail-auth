@@ -18,9 +18,13 @@ class ProjectController extends Controller {
             'projects' => $projects,
         ]);
     }
-
+    
     public function filterByTechnologies(Request $request) {
         // 
-        dd($request->all());
+        // dd($request->all());
+        return response()->json([
+            'response' => true,
+            'projects' => $request->all()
+        ]);
     }
 }
