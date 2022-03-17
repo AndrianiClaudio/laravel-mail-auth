@@ -18,23 +18,37 @@
 
 
     <!-- PRINT ALL PROJECTS -->
-    <div class="card" v-for="(prj,index) in projects" :key="`prj-${index}`">
-      <div class="card-body">
-        <div class="d-flex justify-content-between">
-          <!--  PROJECT NAME -->
-          <h4 class="card-text text-uppercase">{{prj.name}}</h4>
-          <div v-if="prj.technologies" class="technologies">
-            <ul class="list-group list-group-horizontal">
-              <li v-for="(tech,index) in prj.technologies" :key="`tech-${index}`" class="list-group-item border-0">
-                <span class="badge rounded-pill" :class="tech.name === 'HTML' ? 'bg-success' : (tech.name === 'PHP' ? 'bg-info' : (tech.name === 'JS' ? 'bg-warning text-dark' : 'bg-secondary'))">{{tech.name}}</span>
-                </li>
-            </ul>
+    <div class="cards" v-if="projects.length > 0">
+      <div class="card" v-for="(prj,index) in projects" :key="`prj-${index}`">
+        <div class="card-body">
+          <div class="d-flex justify-content-between">
+            <!--  PROJECT NAME -->
+            <h4 class="card-text text-uppercase">{{prj.name}}</h4>
+            <div v-if="prj.technologies" class="technologies">
+              <ul class="list-group list-group-horizontal">
+                <li v-for="(tech,index) in prj.technologies" :key="`tech-${index}`" class="list-group-item border-0">
+                  <span class="badge rounded-pill" :class="tech.name === 'HTML' ? 'bg-success' : (tech.name === 'PHP' ? 'bg-info' : (tech.name === 'JS' ? 'bg-warning text-dark' : 'bg-secondary'))">{{tech.name}}</span>
+                  </li>
+              </ul>
+            </div>
+          </div>
+          <!--  PROJECT SCREEN -->
+          <img v-if="prj.screen" class="card-img-bottom" src="">
+          <!-- PROJECT URL -->
+          <a class="card-link" :href="prj.url">{{prj.url}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="no-cards" v-else>
+      <div class="container">
+        <div class="row">
+          <div class="col-mb-3">
+            <h3 v-if="selected.technologies.lenght === 0">
+              Non sono presenti progetti con queste tecnologie.
+            </h3>
+            <h3 v-else>Non sono presenti progetti. Prova a ricaricare la pagina.</h3>
           </div>
         </div>
-        <!--  PROJECT SCREEN -->
-        <img v-if="prj.screen" class="card-img-bottom" src="">
-         <!-- PROJECT URL -->
-        <a class="card-link" :href="prj.url">{{prj.url}}</a>
       </div>
     </div>
   </div>
@@ -70,9 +84,13 @@ export default {
       .catch(err => console.error(err));
     },
     filterProjects() {
+      // this.getProjects('api/projects/technologies',{params:this.selected});
+
+
       axios.get('api/projects/technologies',{params:this.selected})
       .then(res => {
         console.log(res.data);
+        this.projects = res.data.projects;
       });
 
     }
